@@ -11,7 +11,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170110201412) do
+ActiveRecord::Schema.define(version: 20170112022101) do
+
+  create_table "cards", force: :cascade do |t|
+    t.text     "question"
+    t.text     "answer"
+    t.integer  "deck_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "cards", ["deck_id"], name: "index_cards_on_deck_id"
+
+  create_table "decks", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.integer  "subject_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "decks", ["subject_id"], name: "index_decks_on_subject_id"
+  add_index "decks", ["user_id"], name: "index_decks_on_user_id"
+
+  create_table "subjects", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
