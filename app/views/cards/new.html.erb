@@ -1,9 +1,6 @@
 <h2>Create a new flashcard</h2>
 
 <%= form_for @card, url: {action: "create"} do |f| %>
-<%= f.label :question %>
-<%= f.text_area :question %><br>
-<%= f.label :answer %>
-<%= f.text_area :answer %><br>
+<%= render 'form' %>
 <%= f.submit "Add card" %>
 <% end %>

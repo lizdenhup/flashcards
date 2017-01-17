@@ -5,14 +5,20 @@ class CardsController < ApplicationController
   end 
 
   def create
-    @card = Card.new(card_params)
-    @card.save 
-    # need to fix below line so deck_id is not nil
-    redirect_to deck_path(@card.deck_id)
+
   end 
 
   def show
     @card = Card.find_by(id: params[:id])
+  end 
+
+  def edit
+    @card = Card.find_by(id: params[:id])
+  end
+
+  def update
+    @card = Card.find_by(id: params[:id])
+    @card.update(card_params)
   end 
 
   private

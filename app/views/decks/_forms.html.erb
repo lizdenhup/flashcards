@@ -1,0 +1,6 @@
+<%= f.label :name %>
+<%= f.text_field :name %><br>
+<%= f.fields_for :subject, Subject.new do |subject| %>
+<%= subject.label :name, 'Subject' %>
+<%= subject.text_field :name %>
+<% end %>

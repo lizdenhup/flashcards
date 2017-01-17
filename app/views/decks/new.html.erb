@@ -1,11 +1,6 @@
 <h2>Create a new set of flashcards</h2>
 
 <%= form_for @deck, url: {action: "create"} do |f| %>
-<%= f.label :name %>
-<%= f.text_field :name %><br>
-<%= f.fields_for :subject, Subject.new do |subject| %>
-<%= subject.label :name, 'Subject' %>
-<%= subject.text_field :name %>
-<% end %>
+<%= render 'form' %>
 <%= f.submit "Create Deck" %>
 <% end %>
