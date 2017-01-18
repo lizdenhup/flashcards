@@ -1,7 +1,7 @@
 class DecksController < ApplicationController
 
   def index
-    @decks = current_user.decks 
+    @decks = current_user.decks
   end 
 
   def new
@@ -16,6 +16,7 @@ class DecksController < ApplicationController
 
   def show
     @deck = Deck.find_by(id: params[:id])
+    @cards = @deck.cards 
   end 
 
   def update
@@ -23,6 +24,6 @@ class DecksController < ApplicationController
   end
 
   def deck_params
-    params.require(:deck).permit(:name, :subject_attributes => [:name])
+    params.require(:deck).permit(:name, :user_id, :subject_attributes => [:name])
   end
 end

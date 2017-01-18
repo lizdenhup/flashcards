@@ -3,7 +3,7 @@
 <% if user_signed_in? %>
   Logged in as <strong><%= current_user.email %></strong>.<br>
   <%= link_to "Logout", destroy_user_session_path, method: :delete %><br>
-  <%= link_to "Review an existing set of flashcards" %><br>
+  <%= link_to "Review an existing set of flashcards", decks_path %><br>
   <%= link_to "Add a new set of flashcards", new_deck_path %><br>
 <% else %>
   <%= link_to "Sign up", new_user_registration_path %><br>

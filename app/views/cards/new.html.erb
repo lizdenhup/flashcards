@@ -1,6 +1,6 @@
 <h2>Create a new flashcard</h2>
 
 <%= form_for @card, url: {action: "create"} do |f| %>
-<%= render 'form' %>
+<%= render partial: 'cards/form', locals: { f: f } %>
 <%= f.submit "Add card" %>
 <% end %>

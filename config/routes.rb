@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
 resources :decks do
-  resources :cards
+  resources :cards, except: :index 
 end
 
 resources :subjects 

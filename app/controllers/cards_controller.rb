@@ -1,11 +1,17 @@
 class CardsController < ApplicationController
 
   def new
-    @card = Card.new 
+    @card = Card.new(deck_attributes[deck_id]: params[deck_id])
   end 
 
   def create
-
+    @card = Card.new(card_params)
+    if @card.save
+      #need to fix below line 
+      redirect_to deck_card_path(@deck)
+    else 
+      render 'cards/form'
+    end 
   end 
 
   def show
@@ -23,6 +29,6 @@ class CardsController < ApplicationController
 
   private
   def card_params
-    params.require(:card).permit(:question, :answer)
+    params.require(:card).permit(:question, :answer, :deck_attributes => [:deck_id])
   end 
 end
