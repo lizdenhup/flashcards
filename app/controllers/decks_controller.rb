@@ -16,7 +16,7 @@ class DecksController < ApplicationController
 
   def show
     @deck = Deck.find_by(id: params[:id])
-    @cards = @deck.cards 
+    @cards = Card.all.where(deck_id: params[:deck_id]) 
   end 
 
   def update

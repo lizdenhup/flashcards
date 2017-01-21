@@ -3,4 +3,14 @@
 Name: <%= @deck.name %><br>
 Subject: <%= @deck.subject.name %><br><br>
 
-<%= link_to "Add cards", new_deck_card_path(@deck) %>
+<%= link_to "Add cards", new_deck_card_path(@deck) %><br>
+
+<p> Existing cards: </p>
+
+  <% @cards.each do |card| %>
+<div>
+  <P>-----</P>
+  <p><%= card.question %></p>
+  <p><%= card.answer %></p>
+</div>
+<% end %>

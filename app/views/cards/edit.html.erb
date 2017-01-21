@@ -1,6 +1,6 @@
 <h2>Edit your flashcard</h2>
 
 <%= form_for(@card) do |f| %>
-<%= render 'form' %>
+<%= render partial: 'cards/form', locals: { f: f, deck_id: @deck.id } %>
 <%= f.submit "Edit card" %>
 <% end %>
