@@ -7,9 +7,11 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'welcome#index'
 
-resources :decks do
-  resources :cards, except: :index 
-end
+  resources :users, :only => [:show] do 
+    resources :decks do
+      resources :cards, except: :index 
+    end
+  end 
 
 resources :subjects 
   # Example of regular route:
