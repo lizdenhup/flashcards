@@ -1,6 +1,6 @@
 <h2>Create a new set of flashcards</h2>
 
-<%= form_for @deck do |f| %>
-<%= render partial: 'decks/form', locals: { f: f } %>
+<%= form_for [@user, @deck] do |f| %>
+<%= render partial: 'decks/form', locals: { f: f, id: @current_user.id } %>
 <%= f.submit "Create Deck" %>
 <% end %>

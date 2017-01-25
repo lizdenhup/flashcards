@@ -1,7 +1,13 @@
 <%= f.hidden_field :user_id, :value => current_user.id %>
-<%= f.label :name %>
-<%= f.text_field :name %><br>
-<%= f.fields_for :subject, Subject.new do |subject| %>
-<%= subject.label :name, 'Subject' %>
-<%= subject.text_field :name %>
+  <table>
+    <tr>
+    <td><%= f.label :name %></td>
+    <td><%= f.text_field :name %></td>
+    </tr>
+  <%= f.fields_for :subject, Subject.new do |subject| %>
+    <tr>
+    <td><%= subject.label :name, 'Subject' %></td>
+    <td><%= subject.text_field :name %></td>
+    </tr>
+  </table>
 <% end %>

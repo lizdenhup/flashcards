@@ -3,7 +3,7 @@
 Name: <%= @deck.name %><br>
 Subject: <%= @deck.subject.name %><br><br>
 
-<%= link_to "Add cards", new_deck_card_path(@deck) %><br>
+<%= link_to "Add cards", new_user_deck_card_path(user_id: current_user.id, deck_id: @deck.id) %><br>
 
 <p> Existing cards: </p>
 
