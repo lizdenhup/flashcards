@@ -2,6 +2,7 @@ class CardsController < ApplicationController
 
   def new
     @card = Card.new
+    @user = current_user
     @deck = Deck.find_by(id: params[:deck_id])
   end 
 
@@ -30,6 +31,6 @@ class CardsController < ApplicationController
 
   private
   def card_params
-    params.require(:card).permit(:question, :answer, :deck_id)
+    params.require(:card).permit(:question, :answer, :deck_id, :uaer_id)
   end 
 end

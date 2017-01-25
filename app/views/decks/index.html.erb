@@ -1,10 +1,18 @@
 <% if @decks.count == 0 %>
-  <p>There doesn't seem to be anything here - would you like to <%=link_to "add a new deck", new_user_deck_path(user_id: @current_user.id) %>?</p>
+  <p>There doesn't seem to be anything here - would you like to <%=link_to "add a new deck", new_user_deck_path(user_id: current_user.id) %>?</p>
 <% else %>
   <% @decks.each do |deck| %>
     <div>
       <%= deck.name %><br>
       <%= deck.subject.name %>
+        <% if deck.cards.count == 0 %>
+        <%= link_to "Add some cards", new_user_deck_card_path(user_id: current_user.id, deck_id: deck.id) %>
+      <% else %>
+        <%= link_to "Study this deck", user_deck_card_path(user_id: current_user.id, deck_id: deck.id) %>
+      <% end %>
     </div>
   <% end %>
 <% end %>
+
+
+      
