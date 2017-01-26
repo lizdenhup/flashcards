@@ -1,4 +1,13 @@
+<%= javascript_include_tag('card.js') %>
+
 <div>
-  <%= @card.question %>
-  <%= @card.answer %>
+  Question: <%= @card.question %><br>
 </div>
+
+<button onclick="myFunction()">Answer</button>
+
+<div id="myDIV" style='display:none'>
+  The answer is: <%= @card.answer %>
+</div>
+
+<p>Next card</p>

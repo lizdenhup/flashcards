@@ -10,7 +10,7 @@ class CardsController < ApplicationController
     @card = Card.new(card_params)
     @deck = Deck.find_by(id: params[:deck_id])
     if @card.save
-      redirect_to deck_card_path(@deck, @card)
+      redirect_to user_deck_card_path(user_id: current_user.id, deck_id: @deck.id, id: @card.id)
     else 
       redirect_to 'cards/new'
     end 

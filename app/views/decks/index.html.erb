@@ -4,11 +4,11 @@
   <% @decks.each do |deck| %>
     <div>
       <%= deck.name %><br>
-      <%= deck.subject.name %>
+      <%= deck.subject.name %><br>
         <% if deck.cards.count == 0 %>
-        <%= link_to "Add some cards", new_user_deck_card_path(user_id: current_user.id, deck_id: deck.id) %>
+        <p>This deck appears to be empty - <%= link_to "add some cards", new_user_deck_card_path(user_id: current_user.id, deck_id: deck.id) %>
       <% else %>
-        <%= link_to "Study this deck", user_deck_card_path(user_id: current_user.id, deck_id: deck.id) %>
+        <%= link_to "Study this deck", user_deck_card_path(user_id: current_user.id, deck_id: deck.id, id: deck.cards.first.id) %>
       <% end %>
     </div>
   <% end %>
