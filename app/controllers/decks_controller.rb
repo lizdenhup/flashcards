@@ -12,8 +12,13 @@ class DecksController < ApplicationController
 
   def create
     @deck = Deck.new(deck_params)
-    @deck.save 
-    redirect_to user_deck_path(id: @deck.id, user_id: current_user.id)
+    if @deck.save 
+      flash[:success] = "Success! Your deck has been added."
+      redirect_to user_deck_path(id: @deck.id, user_id: current_user.id)
+    else 
+      flash[:error] = "Sorry. Name/subject cannot be blank."
+      redirect_to new_user_deck_path(user_id: current_user.id)
+    end 
   end 
 
   def show
