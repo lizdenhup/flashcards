@@ -12,5 +12,10 @@ class Deck < ActiveRecord::Base
       subject.decks << self
     end
   end
+
+  def show_random_card
+    self.cards.limit(1).order("RANDOM() ")
+  end 
+
 end
 
