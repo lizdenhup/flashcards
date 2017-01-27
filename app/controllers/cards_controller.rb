@@ -17,6 +17,7 @@ class CardsController < ApplicationController
   end 
 
   def show
+    @deck = Deck.find_by(id: params[:deck_id])
     @card = Card.find_by(id: params[:id])
   end 
 
