@@ -26,9 +26,19 @@ class DecksController < ApplicationController
     @cards = Card.all.where(deck_id: params[:id]) 
   end 
 
+  def edit
+
+  end 
+
   def update
 
   end
+
+  def destroy
+    @deck = Deck.find_by(id: params[:id])
+    @deck.destroy
+    redirect_to user_decks_path(user_id: current_user.id)
+  end 
 
   def deck_params
     params.require(:deck).permit(:name, :user_id, :subject_attributes => [:name])

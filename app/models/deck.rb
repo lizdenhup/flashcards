@@ -1,7 +1,8 @@
 class Deck < ActiveRecord::Base
   belongs_to :user
   belongs_to :subject 
-  has_many :cards
+  has_many :cards, dependent: :destroy 
+
   validates_presence_of :name, :message => "cannot be blank"
 
   accepts_nested_attributes_for :subject, :reject_if => :all_blank
