@@ -23,11 +23,14 @@ class CardsController < ApplicationController
 
   def edit
     @card = Card.find_by(id: params[:id])
+    @user = current_user
+    @deck = @card.deck
   end
 
   def update
     @card = Card.find_by(id: params[:id])
     @card.update(card_params)
+    redirect_to user_deck_card_path(user_id: current_user.id, deck_id: @card.deck.id, id: @card.id)
   end 
 
   private
