@@ -5,4 +5,6 @@ Subject: <%= @deck.subject.name %><br><br>
 
 <%= link_to "Add cards", new_user_deck_card_path(user_id: current_user.id, deck_id: @deck.id) %><br>
 
+<%= link_to "Edit this deck", edit_user_deck_path(user_id: current_user.id, id: @deck.id) %><br>
+
 <%= link_to "Delete this deck", user_deck_path(user_id: current_user.id, id: @deck.id), method: :delete %>

@@ -1,6 +1,6 @@
 <h2>Edit this deck of flashcards</h2>
 
-<%= form_for @deck do |f| %>
-<%= render 'form' %>
+<%= form_for [@user, @deck] do |f| %>
+<%= render partial: 'decks/form', locals: { f: f, user_id: current_user.id } %>
 <%= f.submit "Edit Deck" %>
-<% end %>
+<% end %> 

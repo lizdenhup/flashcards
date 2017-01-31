@@ -27,11 +27,14 @@ class DecksController < ApplicationController
   end 
 
   def edit
-
+    @user = current_user
+    @deck = Deck.find_by(id: params[:id])
   end 
 
   def update
-
+    @deck = Deck.find_by(id: params[:id])
+    @deck.update(deck_params)
+    redirect_to user_deck_path(user_id: current_user.id, id: params[:id])
   end
 
   def destroy
