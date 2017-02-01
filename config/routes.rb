@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     end
   end 
 
+  get '/academic_leaderboard', :to => 'welcome#academic_leaderboard_show'
+
 resources :subjects 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

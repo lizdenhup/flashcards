@@ -15,13 +15,8 @@ devise :database_authenticatable, :registerable, :omniauthable,
     end
   end
 
-  def self.all 
-    @users = User.all 
-  end
-
   def self.academic_leaderboard
-    # returns a ranked list of users with the most sign ins
-    
+    @rankings = User.all.order('sign_in_count DESC').pluck('email')
   end 
 
 end
