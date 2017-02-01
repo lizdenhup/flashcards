@@ -33,6 +33,13 @@ class CardsController < ApplicationController
     redirect_to user_deck_card_path(user_id: current_user.id, deck_id: @card.deck.id, id: @card.id)
   end 
 
+  def destroy
+    @card = Card.find_by(id: params[:id])
+    @card.destroy
+    flash[:success] = "You have successfully deleted this card."
+    redirect_to user_deck_path(user_id: current_user.id, id: @card.deck_id)
+  end
+
   private
   def card_params
     params.require(:card).permit(:question, :answer, :deck_id, :uaer_id)
