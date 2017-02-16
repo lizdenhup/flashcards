@@ -43,7 +43,8 @@ class DecksController < ApplicationController
     flash[:success] = "Deck successfully deleted."
     redirect_to user_decks_path(user_id: current_user.id)
   end 
-
+  
+private
   def deck_params
     params.require(:deck).permit(:name, :user_id, :subject_attributes => [:name])
   end

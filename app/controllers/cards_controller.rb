@@ -12,6 +12,7 @@ class CardsController < ApplicationController
     if @card.save
       redirect_to user_deck_card_path(user_id: current_user.id, deck_id: @deck.id, id: @card.id)
     else 
+      flash[:error] = "You cannot create duplicates of the same question or answer."
       redirect_to 'cards/new'
     end 
   end 
