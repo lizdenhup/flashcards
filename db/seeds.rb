@@ -61,7 +61,7 @@ states_and_capitals = {
 @deck = Deck.create(name: "States and their Capitals", user_id: User.first.id, subject_id: @subject.id)
 
 states_and_capitals.each do |key, value| 
-  @card = Card.create(question: key, answer: value, deck_id: @deck.id)
+  @card = Card.create(question: "What is the capital of " + key + "?", answer: value, deck_id: @deck.id)
 end 
 
 
