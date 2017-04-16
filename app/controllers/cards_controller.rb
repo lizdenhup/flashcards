@@ -15,14 +15,14 @@ class CardsController < ApplicationController
       flash[:error] = "Neither the question nor the answer field may be left blank. Please try again!"
       redirect_to new_user_deck_card_path(user_id: current_user.id, deck_id: @deck.id)
     end 
-  end 
-
+  end
+  
   def show
     @deck = Deck.find_by(id: params[:deck_id])
     @card = Card.find_by(id: params[:id])
     respond_to do |format|
       format.html {render :show }
-      format.json {render json: @card }
+      format.json {render json: @card, include: ['deck'], except: ['created_at', 'updated_at'] }
     end 
   end 
 
