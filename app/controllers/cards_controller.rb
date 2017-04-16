@@ -20,6 +20,10 @@ class CardsController < ApplicationController
   def show
     @deck = Deck.find_by(id: params[:deck_id])
     @card = Card.find_by(id: params[:id])
+    respond_to do |format|
+      format.html {render :show }
+      format.json {render json: @card }
+    end 
   end 
 
   def edit
