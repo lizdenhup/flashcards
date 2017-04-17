@@ -9,24 +9,19 @@
 </head>
 <body>
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container">
-    <ul class="nav navbar-nav">
-    <% if user_signed_in? %>
-      <li><%=link_to "Home", root_path%></li>
-      <li><%=link_to "Add a deck", new_user_deck_path(user_id: current_user.id) %></li>
-      <li><%=link_to "Review a deck", user_decks_path(user_id: current_user.id) %></li> 
-      <li><%=link_to "Leaderboard", academic_leaderboard_path %></li>    
-      <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
-      <% else %>
-        <li><%= link_to "Sign up", new_user_registration_path %></li>
-        <li><%= link_to "Login", new_user_session_path %></li>
-    <% end %>
-    </ul>
+<% if user_signed_in? %>
+<nav class="clearfix white bg-black">
+  <div class="sm-col">
+    <class="btn py2"><%=link_to "Home", root_path%>
+    <class="btn py2"><%=link_to "Add a deck", new_user_deck_path(user_id: current_user.id)%>
+    <class="btn py2"><%=link_to "Review a deck", user_decks_path(user_id: current_user.id)%>
+  </div>
+  <div class="sm-col-right">
+    <class="btn py2"><%= link_to "Logout", destroy_user_session_path, method: :delete %>
   </div>
 </nav>
-<br>
-<br>
+<% end %>
+
 
 <div class="container">
   <% flash.each do |key, value| %>
