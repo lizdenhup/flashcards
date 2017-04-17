@@ -1,9 +1,10 @@
 class CardsController < ApplicationController
 
   def card_data
-
+    @card = Card.find(params[:id])
+    render json: @card.to_json 
   end
-  
+
   def new
     @card = Card.new
     @user = current_user

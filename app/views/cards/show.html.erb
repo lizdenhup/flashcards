@@ -1,17 +1,28 @@
-<div>
+<div class="cardQuestion">
   Question: <%= @card.question %><br>
 </div>
 
 <button onclick="myFunction()">Answer</button>
 
-<div id="myDIV" style='display:none'>
+<div id="myDIV" class="cardAnswer" style='display:none'>
   The answer is: <%= @card.answer %>
 </div>
 <br />
 <% if @deck.cards.count == 1 %>
   <p> There is only one card in this deck. Consider <%= link_to "adding more", new_user_deck_card_path(user_id: current_user.id, deck_id: @deck.id) %> in order to get the most out of your study session.
 <% else %>
-  <%= link_to "Next card", user_deck_card_path(user_id: current_user.id, deck_id: @deck.id, id: @deck.show_random_card.first.id)%><br>
-  <%= link_to "Edit card", edit_user_deck_card_path(user_id: current_user.id, deck_id: @deck.id, id: @card.id) %><br>
-  <%= link_to "Delete card", user_deck_card_path(user_id: current_user.id, deck_id: @deck.id, id: @card.id), method: :delete %>
+  <a href="#" class="js-next" data-id="<%=@card.id%>">Next...</a>
 <% end  %> 
+
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    $('.js-next').on("click", function() {
+      var nextId = parseInt($('.js-next').attr('data-id')) + 1;
+      $.get('/cards/' + nextId + '.json', function(data) {
+        $('.cardQuestion').text(data['cards']['question']);
+        $('.cardAnswer').text(data['cards']['answer']);
+        $('.js-next').attr('data-id', data['id']);
+      });
+    });
+  });
+</script>
