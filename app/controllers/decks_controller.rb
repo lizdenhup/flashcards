@@ -29,7 +29,7 @@ class DecksController < ApplicationController
     @deck = Deck.find_by(id: params[:id])
     respond_to do |format|
       format.html { render :show }
-      format.json { render json: @deck, include: ['subject'], except: ['created_at', 'updated_at'] }
+      format.json { render json: @deck }
     end 
   end 
 
