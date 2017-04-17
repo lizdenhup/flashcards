@@ -5,7 +5,7 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-<link href="https://npmcdn.com/basscss@8.0.1/css/basscss.min.css" rel="stylesheet">
+<link href="https://unpkg.com/basscss@7.1.1/css/basscss.min.css" rel="stylesheet">
 </head>
 <body>
 
@@ -21,7 +21,6 @@
   </div>
 </nav>
 <% end %>
-
 
 <div class="container">
   <% flash.each do |key, value| %>
