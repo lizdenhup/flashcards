@@ -8,12 +8,29 @@
         <% if deck.cards.count == 0 %>
         <p>This deck appears to be empty - <%= link_to "add some cards", new_user_deck_card_path(user_id: current_user.id, deck_id: deck.id) %>
       <% else %>
-        <%= link_to "View this deck", user_deck_path(user_id: current_user.id, id: deck.id) %><br>
+        <a href="#" class="js-more" user-id="<%=@user.id %>" deck-id="<%=deck.id%>">Quick view this deck</a><br>
+        <div class="deck-contents"></div>
         <%= link_to "Study this deck", user_deck_card_path(user_id: current_user.id, deck_id: deck.id, id: deck.cards.first.id) %>
       <% end %>
     </div>
   <% end %>
 <% end %>
 
-
-      
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    $('.js-more').on("click", function(e) {
+      e.preventDefault();
+      //var userId = $('.js-more').attr('user-id')
+      //var deckId = $('.js-more').attr('deck-id')
+     $.ajax({
+      method: 'GET',
+      url: '/users/1/decks/51' + '.json'
+     }).done(function(data) {
+      console.log(data)
+      $('.deck-contents').text(data['cards'][0]['question'])
+      debugger;
+     })
+    })
+   // debugger; 
+  })
+</script>
