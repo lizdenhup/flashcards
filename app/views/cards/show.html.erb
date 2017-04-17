@@ -16,13 +16,18 @@
 
 <script type="text/javascript" charset="utf-8">
   $(function () {
-    $('.js-next').on("click", function() {
+    $('.js-next').on("click", function(e) {
+      e.preventDefault();
       var nextId = parseInt($('.js-next').attr('data-id')) + 1;
-      $.get('/cards/' + nextId + '.json', function(data) {
-        $('.cardQuestion').text(data['cards']['question']);
-        $('.cardAnswer').text(data['cards']['answer']);
-        $('.js-next').attr('data-id', data['id']);
-      });
-    });
-  });
+     $.ajax({
+      method: 'GET',
+      url: '/users/1/decks/51/cards/' + nextId + '.json'
+     }).done(function(data) {
+      $('.cardQuestion').text(data['question'])
+      $('.cardAnswer').text(data['answer'])
+      $('.js-next').attr('data-id', data['id'])
+     })
+    })
+
+  })
 </script>
