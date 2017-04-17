@@ -20,11 +20,12 @@
   $(function () {
     $('.js-more').on("click", function(e) {
       e.preventDefault();
-      //var userId = $('.js-more').attr('user-id')
-      //var deckId = $('.js-more').attr('deck-id')
+      var userId = $('.js-more').attr('user-id')
+      var deckId = $('.js-more').attr('deck-id')
+      var url = `/users/${userId}/decks/${deckId}`
      $.ajax({
       method: 'GET',
-      url: '/users/1/decks/51' + '.json'
+       url: url + '.json'
      }).done(function(data) {
       console.log(data)
       for (var i=0; i<49; i++) {
