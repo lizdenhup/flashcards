@@ -1,5 +1,9 @@
 class CardsController < ApplicationController
 
+  def card_data
+
+  end
+  
   def new
     @card = Card.new
     @user = current_user

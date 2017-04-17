@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     end
   end 
 
+  get '/users/:user_id/decks/:deck_id/cards/:id/card_data', to: 'cards#card_data'
+
   get '/academic_leaderboard', :to => 'welcome#academic_leaderboard_show'
 
 resources :subjects 
