@@ -3,6 +3,10 @@ class DecksController < ApplicationController
   def index
     @user = current_user
     @decks = @user.decks
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: @decks }
+    end
   end 
 
   def new
