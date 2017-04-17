@@ -11,7 +11,7 @@
 <% if @deck.cards.count == 1 %>
   <p> There is only one card in this deck. Consider <%= link_to "adding more", new_user_deck_card_path(user_id: current_user.id, deck_id: @deck.id) %> in order to get the most out of your study session.
 <% else %>
-  <a href="#" class="js-next" data-id="<%=@card.id%>">Next...</a>
+  <a href="#" class="js-next" user-id="<%=current_user.id%>" deck-id="<%=@deck.id %>" data-id="<%=@card.id%>">Next...</a>
 <% end  %> 
 
 <script type="text/javascript" charset="utf-8">
@@ -19,15 +19,17 @@
     $('.js-next').on("click", function(e) {
       e.preventDefault();
       var nextId = parseInt($('.js-next').attr('data-id')) + 1;
+      var userId = $('.js-next').attr('user-id')
+      var deckId = $('.js-next').attr('deck-id')
      $.ajax({
       method: 'GET',
-      url: '/users/1/decks/51/cards/' + nextId + '.json'
+      url: '/users/userId/decks/deckId/cards/' + nextId + '.json'
      }).done(function(data) {
       $('.cardQuestion').text(data['question'])
       $('.cardAnswer').text(data['answer'])
       $('.js-next').attr('data-id', data['id'])
      })
     })
-
+   // debugger; 
   })
 </script>
