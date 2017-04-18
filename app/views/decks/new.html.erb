@@ -5,6 +5,10 @@
 <%= f.submit "Create Deck" %>
 <% end %>
 
+<div id="deckResult">
+<h2 id="deckName"></h2>
+<h2 id="deckSubject"></h2>
+</div>
 
 <script type="text/javascript" charset="utf-8">
   $(function () {
@@ -15,7 +19,10 @@
       var userId = $('#deck_user_id')[0].value;
       var posting = $.post(`/users/${userId}/decks`, values);
         posting.done(function(data) {
-          console.log(data);
+          var deck = data;
+          //debugger;
+          $('#deckName').text(data['name'])
+          $('#deckSubject').text(data['subject']['name'])
         });
     });
   });
