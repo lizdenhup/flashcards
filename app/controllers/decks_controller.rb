@@ -18,7 +18,7 @@ class DecksController < ApplicationController
     @deck = Deck.new(deck_params)
     if @deck.save 
       flash[:success] = "Success! Your deck has been added."
-      redirect_to user_deck_path(id: @deck.id, user_id: current_user.id)
+      render json: @deck, status: 201 
     else 
       flash[:error] = "Sorry. Name/subject cannot be blank."
       redirect_to new_user_deck_path(user_id: current_user.id)

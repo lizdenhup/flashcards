@@ -15,7 +15,7 @@
       var userId = $('#deck_user_id')[0].value;
       var posting = $.post(`/users/${userId}/decks`, values);
         posting.done(function(data) {
-          
+          console.log(data);
         });
     });
   });
