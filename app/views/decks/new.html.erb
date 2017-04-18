@@ -4,3 +4,12 @@
 <%= render partial: 'decks/form', locals: { f: f, id: current_user.id } %>
 <%= f.submit "Create Deck" %>
 <% end %>
+
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    $('form').submit(function(e) {
+      e.preventDefault();
+      alert('almost there');
+    });
+  });
+</script>
