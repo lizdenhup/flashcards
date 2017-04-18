@@ -20,11 +20,15 @@
       var posting = $.post(`/users/${userId}/decks`, values);
         posting.done(function(data) {
           var deck = data;
-          //debugger;
-          $('#deckName').text(data['name'])
-          $('#deckSubject').text(data['subject']['name'])
+          var name = $('#deckName').text(data['name'])
+          var subject = $('#deckSubject').text(data['subject']['name'])
+          //this is kind of just a demonstration of object prototyping in js and not adding that much function
+          var thisDeck = new currentDeck(data['name'], data['subject']['name']);
+          debugger;
+          $('#deckResult').append(thisDeck.format())
         });
     });
   });
 </script>
+
 
