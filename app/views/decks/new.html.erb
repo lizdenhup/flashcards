@@ -5,11 +5,19 @@
 <%= f.submit "Create Deck" %>
 <% end %>
 
+
 <script type="text/javascript" charset="utf-8">
   $(function () {
     $('form').submit(function(e) {
       e.preventDefault();
-      alert('almost there');
+      var values = $(this).serialize();
+      //debugger;
+      var userId = $('#deck_user_id')[0].value;
+      var posting = $.post(`/users/${userId}/decks`, values);
+        posting.done(function(data) {
+          
+        });
     });
   });
 </script>
+
