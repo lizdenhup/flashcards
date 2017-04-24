@@ -8,7 +8,7 @@
         <% if deck.cards.count == 0 %>
         <p>This deck appears to be empty - <%= link_to "add some cards", new_user_deck_card_path(user_id: current_user.id, deck_id: deck.id) %>
       <% else %>
-        <button class="js-more" user-id="<%=@user.id %>" deck-id="<%=deck.id%>">Quick view this deck</button><br>
+        <button id="myBtn" class="js-more" user-id="<%=@user.id %>" deck-id="<%=deck.id%>">Quick view this deck</button><br>
         <div class="deck-contents"></div>
         <%= link_to "Study this deck", user_deck_card_path(user_id: current_user.id, deck_id: deck.id, id: deck.cards.first.id) %>
       <% end %>
@@ -26,10 +26,28 @@
 <script type="text/javascript" charset="utf-8">
   $(function () {
     var modal = document.getElementById('modal')
+    var button = document.getElementById('myBtn')
+    var span = document.getElementsByClassName("close")[0];
+
+    //opens the modal on button click
     $('.js-more').on("click", function(e) {
-      console.log(modal)
+      //console.log(modal)
       modal.style.display = "block";
     })
+
+    //when the user clicks on <span> (x) close the modal
+    $('.close').on("click", function() {
+      modal.style.display = "none";
+    })
+
+    //when user clicks outside of modal, close it
+    $(document).on("click", function(e) {
+      if (e.target == modal) {
+        modal.style.display = "none";
+      }
+    })
+  })
+
 
 
 
@@ -54,5 +72,5 @@
     //  })
     // })
    // debugger; 
-  })
+
 </script>
