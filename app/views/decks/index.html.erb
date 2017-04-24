@@ -34,20 +34,26 @@
       var deckId = $('.js-more').attr('deck-id')
       var url = `/users/${userId}/decks/${deckId}`
       // console.log(modal)
-       $.ajax({
-        method: 'GET',
-         url: url + '.json'
-       }).done(function(data) {
-        console.log(data)
-      })
+        if (loaded) {
+          modal.style.display = "block";
+        } else {
+          $.ajax({
+          method: 'GET',
+          url: url + '.json'
+          }).done(function(data) {
+            for (var i = 0, l = data['cards'].length; i < l; i++) {
+              $('p').text(data['cards'][i]['question'])
+            }
+            loaded = true; 
+            modal.style.display = "block";
+      }) 
+    }
+  })
+
+
     //   for (var i=0; i<49; i++) {
-    //     $('.deck-contents').append(data['cards'][i]['question'])
-    //     $('.deck-contents').append(data['cards'][i]['answer'])
 
 
-      modal.style.display = "block";
-
-    })
 
     //when the user clicks on <span> (x) close the modal
     $('.close').on("click", function() {
@@ -61,13 +67,6 @@
       }
     })
   })
-
-
-
-
-
-
-
 
     // $('.js-more').on("click", function(e) {
     //   e.preventDefault();
