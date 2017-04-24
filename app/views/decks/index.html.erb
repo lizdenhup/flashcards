@@ -8,7 +8,7 @@
         <% if deck.cards.count == 0 %>
         <p>This deck appears to be empty - <%= link_to "add some cards", new_user_deck_card_path(user_id: current_user.id, deck_id: deck.id) %>
       <% else %>
-        <a href="#" class="js-more" user-id="<%=@user.id %>" deck-id="<%=deck.id%>">Quick view this deck</a><br>
+        <button class="js-more" user-id="<%=@user.id %>" deck-id="<%=deck.id%>">Quick view this deck</button><br>
         <div class="deck-contents"></div>
         <%= link_to "Study this deck", user_deck_card_path(user_id: current_user.id, deck_id: deck.id, id: deck.cards.first.id) %>
       <% end %>
@@ -16,24 +16,43 @@
   <% end %>
 <% end %>
 
+<div id="modal" class="modal">
+  <div class="modal-content">
+      <span class="close">&times;</span>
+      <p>insert cards here</p>
+  </div>
+</div>
+
 <script type="text/javascript" charset="utf-8">
   $(function () {
+    var modal = document.getElementById('modal')
     $('.js-more').on("click", function(e) {
-      e.preventDefault();
-      var userId = $('.js-more').attr('user-id')
-      var deckId = $('.js-more').attr('deck-id')
-      var url = `/users/${userId}/decks/${deckId}`
-     $.ajax({
-      method: 'GET',
-       url: url + '.json'
-     }).done(function(data) {
-      console.log(data)
-      for (var i=0; i<49; i++) {
-        $('.deck-contents').append(data['cards'][i]['question'])
-        $('.deck-contents').append(data['cards'][i]['answer'])
-      }
-     })
+      console.log(modal)
+      modal.style.display = "block";
     })
+
+
+
+
+
+
+
+    // $('.js-more').on("click", function(e) {
+    //   e.preventDefault();
+    //   var userId = $('.js-more').attr('user-id')
+    //   var deckId = $('.js-more').attr('deck-id')
+    //   var url = `/users/${userId}/decks/${deckId}`
+    //  $.ajax({
+    //   method: 'GET',
+    //    url: url + '.json'
+    //  }).done(function(data) {
+    //   console.log(data)
+    //   for (var i=0; i<49; i++) {
+    //     $('.deck-contents').append(data['cards'][i]['question'])
+    //     $('.deck-contents').append(data['cards'][i]['answer'])
+    //   }
+    //  })
+    // })
    // debugger; 
   })
 </script>
