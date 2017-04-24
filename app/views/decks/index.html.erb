@@ -41,14 +41,16 @@
           method: 'GET',
           url: url + '.json'
           }).done(function(data) {
+            $('p').text("");
             for (var i = 0, l = data['cards'].length; i < l; i++) {
-              $('p').text(data['cards'][i]['question'])
+              $('p').append(data['cards'][i]['question']).append(" ")
+              $('p').append(data['cards'][i]['answer']).append('<br />')
             }
             loaded = true; 
             modal.style.display = "block";
-      }) 
-    }
-  })
+          }) 
+        }
+      })
 
 
     //   for (var i=0; i<49; i++) {
